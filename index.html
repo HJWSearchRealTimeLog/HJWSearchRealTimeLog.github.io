@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- saved from url=(0327)https://s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:595ac8c2/jump.html?url=dianping%3A%2F%2Fsearchshoplist%3Ftabtype%3D0%26tabid%3D-1%26keyword%3D%E4%B8%80%E4%B8%AA%E5%8F%AB%E5%B7%9D%E7%9A%84%E5%9C%B0%E6%96%B9%26source%3Dsearchtrack%2523queryid%25403870a15c-734f-4bd9-8a9c-883b6201a9ac%26cityid%3D2 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>正在唤起app...</title>
+    <meta name="description" content="">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <link rel="stylesheet" type="text/css" href="./正在唤起app..._files/index.css">
+</head>
+<body>
+<script type="text/javascript">
+/**
+ *@param {string} url 完整的URL地址
+ *@returns {object} 自定义的对象
+ *@description 用法示例：var myURL = parseURL('http://abc.com:8080/dir/index.html?id=255&m=hello#top');
+ myURL.file='index.html'
+ myURL.hash= 'top'
+ myURL.host= 'abc.com'
+ myURL.query= '?id=255&m=hello'
+ myURL.params= Object = { id: 255, m: hello }
+ myURL.path= '/dir/index.html'
+ myURL.segments= Array = ['dir', 'index.html']
+ myURL.port= '8080'
+ myURL.protocol= 'http'
+ myURL.source= 'http://abc.com:8080/dir/index.html?id=255&m=hello#top'
+ */
+function parseURL(url) {
+    var a =  document.createElement('a');
+    a.href = url;
+    return {
+        source: url,
+        protocol: a.protocol.replace(':',''),
+        host: a.hostname,
+        port: a.port,
+        query: a.search,
+        params: (function(){
+            var ret = {},
+                seg = a.search.replace(/^\?/,'').split('&'),
+                len = seg.length, i = 0, s;
+            for (;i<len;i++) {
+                if (!seg[i]) { continue; }
+                s = seg[i].split('=');
+                ret[s[0]] = s[1];
+            }
+            return ret;
+        })(),
+        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+        hash: a.hash.replace('#',''),
+        path: a.pathname.replace(/^([^\/])/,'/$1'),
+        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+        segments: a.pathname.replace(/^\//,'').split('/')
+    };
+}
+
+window.onload = function() {
+    var url = decodeURIComponent(parseURL(location.href).params.url)
+    location.href = url
+}
+
+</script>
+
+
+</body></html>
